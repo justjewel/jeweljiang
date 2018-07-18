@@ -1863,7 +1863,6 @@ header.header .header-cont .navigation.scrolled .nav-link {
   background-color: rgba(0,0,0,0.1);
 }
 .index-content .post-item .bottom-bar .read-more-btn {
-  float: right;
   color: #3f51b5;
   display: block;
   padding: 8px 14px;
