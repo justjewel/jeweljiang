@@ -53,7 +53,7 @@
 <meta property="og:site_name" content="just a blog">
 <meta property="og:description" content="JavaScript导论JavaScript 是一种轻量级的脚本语言。所谓“脚本语言”（script language），指的是它不具备开发操作系统的能力，而是只用来编写控制其他大型应用程序（比如浏览器）的“脚本”。vue中所使用的typescript被称作JavaScript的超集。 JavaScript运算123赋值表达式 &quot;=&quot;:使用此表达式会给变量赋值（不可对变量进行判断)相等运算“==”">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-18T06:08:31.042Z">
+<meta property="og:updated_time" content="2018-07-18T06:34:49.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript知识点">
 <meta name="twitter:description" content="JavaScript导论JavaScript 是一种轻量级的脚本语言。所谓“脚本语言”（script language），指的是它不具备开发操作系统的能力，而是只用来编写控制其他大型应用程序（比如浏览器）的“脚本”。vue中所使用的typescript被称作JavaScript的超集。 JavaScript运算123赋值表达式 &quot;=&quot;:使用此表达式会给变量赋值（不可对变量进行判断)相等运算“==”">
@@ -221,11 +221,12 @@
 <h3 id="对象操作"><a href="#对象操作" class="headerlink" title="对象操作"></a>对象操作</h3><p>对象（object）是 JavaScript 语言的核心概念，也是最重要的数据类型。</p>
 <p>什么是对象？简单说，对象就是一组“键值对”（key-value）的集合，是一种无序的复合数据集合。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  foo: &apos;Hello&apos;,</span><br><span class="line">  bar: &apos;World&apos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>上面代码中，大括号就定义了一个对象，它被赋值给变量<figure class="highlight plain"><figcaption><span>'Hello' ```，其中```foo```是“键名”（成员的名称），字符串```Hello```是“键值”（成员的值）。键名与键值之间用冒号分隔。第二个键值对是```bar: 'World'```，```bar```是键名，```World```是键值。两个键值对之间用逗号分隔。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 键名</span><br><span class="line">对象的所有键名都是字符串（ES6 又引入了 Symbol 值也可以作为键名），所以加不加引号都可以。上面的代码也可以写成下面这样。</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中，大括号就定义了一个对象，它被赋值给变量obj，所以变量obj就指向一个对象。该对象内部包含两个键值对（又称为两个“成员”），第一个键值对是foo: ‘Hello’，其中foo是“键名”（成员的名称），字符串Hello是“键值”（成员的值）。键名与键值之间用冒号分隔。第二个键值对是bar: ‘World’，bar键名，<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 键名</span><br><span class="line">对象的所有键名都是字符串（ES6 又引入了 Symbol 值也可以作为键名），所以加不加引号都可以。上面的代码也可以写成下面这样。</span><br></pre></td></tr></table></figure></p>
 <p>var obj = {<br>  ‘foo’: ‘Hello’,<br>  ‘bar’: ‘World’<br>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">### 对象的引用</span><br><span class="line"></span><br><span class="line">如果不同的变量名指向同一个对象，那么它们都是这个对象的引用，也就是说指向同一个内存地址。修改其中一个变量，会影响到其他所有变量。</span><br></pre></td></tr></table></figure></p>
 <p>var o1 = {};<br>var o2 = o1;</p>
 <p>o1.a = 1;<br>o2.a // 1</p>
-<p>o2.b = 2;<br>o1.b // 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">对象采用大括号表示，这导致了一个问题：如果行首是一个大括号，它到底是表达式还是语句？为了避免这种歧义，V8 引擎规定，如果行首是大括号，一律解释为对象。不过，为了避免歧义，最好在大括号前加上圆括号。</span><br></pre></td></tr></table></figure></p>
+<p>o2.b = 2;<br>o1.b // 2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">对象采用大括号表示，这导致了一个问题：如果行首是一个大括号，它到底是表达式还是语句？为了避免这种歧义，V8 引擎规定，如果行首是大括号，一律解释为对象。不过，为了避免歧义，最好在大括号前加上圆括号。</span><br></pre></td></tr></table></figure>
 <p>({ foo: 123})<br>eval(‘{foo: 123}’) // 123<br>eval(‘({foo: 123})’) // {foo: 123}</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看一个对象本身的所有属性，可以使用Object.keys方法。</span><br></pre></td></tr></table></figure>
 <p>var obj = {<br>  key1: 1,<br>  key2: 2<br>};</p>
