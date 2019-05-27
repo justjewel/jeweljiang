@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- content-Type -->
+<meta charset="utf-8">
+
+
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="language" content="en">
+<meta name="robots" content="all">
+
+
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+<meta name="author" content="jewel, 562285410@qq.com">
+<meta name="reply-to" content="562285410@qq.com">
+<meta name="owner" content="jewel">
+
+
+
+
+<meta name="google-site-verification" content="xxxxxxxxxx" />
+
+
+
+
+<meta name="baidu-site-verification" content="xxxxxxxxxx" />
+
+
+
+
+
+
+
+<meta name="keywords" content="^_^" />
+
+
+<meta name="description" content="1.0写在前面经过一段时间的工作和学习，也遇到了很多问题，多方查证也找到了答案，这篇文章将持续记录遇到的问题及解决办法。 1.1 数组对象的深拷贝与浅拷贝在做项目的时候难免遇到数组对象循环的情况，在一次项目代码编写中，需要用到接口请求到的数组对象，其中一个小需求中要将这组数据重新处理，将原有数据加工成为自己需要的数据。但是在使用for循环改变对象键值后，发现循环不仅改变处理后的数组，还改变了原数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="疑难杂症">
+<meta property="og:url" content="http://yoursite.com/2019/05/27/疑难杂症/index.html">
+<meta property="og:site_name" content="just a blog">
+<meta property="og:description" content="1.0写在前面经过一段时间的工作和学习，也遇到了很多问题，多方查证也找到了答案，这篇文章将持续记录遇到的问题及解决办法。 1.1 数组对象的深拷贝与浅拷贝在做项目的时候难免遇到数组对象循环的情况，在一次项目代码编写中，需要用到接口请求到的数组对象，其中一个小需求中要将这组数据重新处理，将原有数据加工成为自己需要的数据。但是在使用for循环改变对象键值后，发现循环不仅改变处理后的数组，还改变了原数组">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-27T09:08:28.719Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="疑难杂症">
+<meta name="twitter:description" content="1.0写在前面经过一段时间的工作和学习，也遇到了很多问题，多方查证也找到了答案，这篇文章将持续记录遇到的问题及解决办法。 1.1 数组对象的深拷贝与浅拷贝在做项目的时候难免遇到数组对象循环的情况，在一次项目代码编写中，需要用到接口请求到的数组对象，其中一个小需求中要将这组数据重新处理，将原有数据加工成为自己需要的数据。但是在使用for循环改变对象键值后，发现循环不仅改变处理后的数组，还改变了原数组">
+
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.0.2" />
+
+
+
+
+<link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+
+<link href="http://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.0.2"/>
+
+
+<script>
+(function(){
+  var bp = document.createElement('script');
+  bp.src = '//push.zhanzhang.baidu.com/push.js';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <title> 疑难杂症 </title>
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'xxxxxxxxxx', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?xxxxxxxxxx";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+</head>
+<body lang="">
+
+  <!--[if lte IE 9]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+  <div class="another-theme layout">
+
+    
+<header class="header" id="header">
+
+  <div class="header-cont">
+    <div class="text-area">
+      
+        <h1 class="title" data-text="疑难杂症"> 疑难杂症 </h1>
+
+        
+        <div class="post-meta">
+          <div class="post-time">
+            Posted on
+            <time  datetime="2019-05-27T17:07:05+08:00" content="2019-05-27">
+              2019-05-27
+            </time>
+          </div>
+
+          
+            <div class="post-category" >
+              
+                <span>
+                  <a href="/categories#学习笔记" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </div>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <a href="/2019/05/27/疑难杂症/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/05/27/疑难杂症/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+        </div>
+        
+      
+    </div>
+    <!-- Navigation -->
+    
+    <nav class="navigation clearfix" id="navigation">
+      
+        
+        <a class="nav-link" href="/" rel="section">
+          Home
+        </a>
+      
+        
+        <a class="nav-link" href="/categories" rel="section">
+          Categories
+        </a>
+      
+        
+        <a class="nav-link" href="/tags" rel="section">
+          Tags
+        </a>
+      
+        
+        <a class="nav-link" href="/about" rel="section">
+          About
+        </a>
+      
+    </nav>
+    
+  </div>
+  <div class="mask"></div>
+</header>
+
+
+    <main class="container">
+
+      
+
+  <article class="post-article post-type-normal post" itemscope>
+
+  <div class="post-body">
+
+    <div class="content markdown-body"><h2 id="1-0写在前面"><a href="#1-0写在前面" class="headerlink" title="1.0写在前面"></a>1.0写在前面</h2><p>经过一段时间的工作和学习，也遇到了很多问题，多方查证也找到了答案，这篇文章将持续记录遇到的问题及解决办法。</p>
+<h2 id="1-1-数组对象的深拷贝与浅拷贝"><a href="#1-1-数组对象的深拷贝与浅拷贝" class="headerlink" title="1.1 数组对象的深拷贝与浅拷贝"></a>1.1 数组对象的深拷贝与浅拷贝</h2><p>在做项目的时候难免遇到数组对象循环的情况，在一次项目代码编写中，需要用到接口请求到的数组对象，其中一个小需求中要将这组数据重新处理，将原有数据加工成为自己需要的数据。<br>但是在使用for循环改变对象键值后，发现循环不仅改变处理后的数组，还改变了原数组。<br>后来了解到数组循环有多种循环方式，如map、mapEach等方法都各有其特性。了解到使用map循环不会改变原数组，于是便改用了map。使用后本以为能顺利解决这个问题，但是却还是改变了原数组。<br>经过多方查证，我发现了问题所在，原来数组对象的循环与数组的循环大有不同。<br>js对象是引用类型，字符和数字是基本类型，基本类型传值是复制，引用类型传值是引用。栗子如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">var b = a;</span><br><span class="line">b++;</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = [1];</span><br><span class="line">var b = a;</span><br><span class="line">b[0]++;</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure>
+<p>知道问题原因所在后，我了解到数组对象不能单单 let a = b;当为数组对象时，最好最数组对象进行一次深拷贝，这样不仅能将数组完全复制过来，还能保证原数组不被更改。<br>深拷贝可以将数组对象先转换为字符串，再将字符串转换为数组对象，具体操作如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let list = JSON.parse(JSON.stringify(res.data));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function deepCopy(obj)&#123;</span><br><span class="line">    //判断是否是简单数据类型，</span><br><span class="line">    if(typeof obj == &quot;object&quot;)&#123;</span><br><span class="line">        //复杂数据类型</span><br><span class="line">        var result = obj.constructor == Array ? [] : &#123;&#125;;</span><br><span class="line">        for(let i in obj)&#123;</span><br><span class="line">            result[i] = typeof obj[i] == &quot;object&quot; ? deepCopy(obj[i]) : obj[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        //简单数据类型 直接 == 赋值</span><br><span class="line">        var result = obj;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let path = arr.map((e, i) =&gt; i % 2 ? null : [arr[i], arr[i + 1]]).filter(Boolean); // 两两取出</span><br></pre></td></tr></table></figure></div>
+
+    <div class="post-sidebar">
+  <div class="toggle-btn" id="toggle-btn">
+    <i class="fa fa-reorder"></i>
+  </div>
+  <section class="post-toc-wrap" id="post-sidebar">
+    <h2 class="toc-title">内容目录</h2>
+    <div class="post-toc">
+      
+      
+        <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-0写在前面"><span class="nav-text">1.0写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-数组对象的深拷贝与浅拷贝"><span class="nav-text">1.1 数组对象的深拷贝与浅拷贝</span></a></li></ol></div>
+      
+    </div>
+  </section>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    
+    
+  <style>
+    .donation {
+      width: 100%;
+      margin-top: 2rem;
+    }
+    .donation .text {
+      color: #333;
+      font-size: .8rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .donation .text:hover {
+      color: rgb(63,134,181);
+    }
+    .donation .img-box {
+      transition: all .3s;
+      width: 0;
+      height: 0;
+      margin: 1rem auto;
+      overflow: hidden;
+    }
+    .donation .img-box img {
+      width: 100%;
+      height: 100%;
+    }
+    .donation #donation {
+      display: none;
+    }
+    .donation #donation:checked + .img-box {
+      width: 16rem;
+      height: 16rem;
+    }
+  </style>
+  <div class="donation">
+    <label class="text" for="donation">
+
+    </label>
+    <input type="checkbox" name="donation" id="donation">
+    <div class="img-box">
+      <img src="/img/donation.png" alt="donation" />
+    </div>
+  </div>
+
+
+  </footer>
+
+</article>
+
+
+
+
+      
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2019/05/27/疑难杂症/"
+           data-title="疑难杂症" data-url="http://yoursite.com/2019/05/27/疑难杂症/">
+      </div>
+    
+  </div>
+
+
+
+
+    </main>
+
+    <footer class="footer clearfix">
+  <div class="copyright" >
+    <span>Copyright</span>
+    
+    &copy;  2018-
+    <span itemprop="copyrightYear">2019</span>
+    <span class="author" itemprop="copyrightHolder">jewel</span>
+  </div>
+
+  <div class="info">
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+      <span id="showDays" class="show-days"></span>
+      <script>
+      var birthDay = new Date('07/18/2018');
+      var now = new Date();
+      var duration = now.getTime() - birthDay.getTime();
+      var total= Math.floor(duration / (1000 * 60 * 60 * 24));
+      document.getElementById("showDays").innerHTML = "本站已运行 "+total+" 天";
+      </script>
+      ---
+    
+    <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+  </div>
+
+  <div class="my-theme">
+    Theme by jewel</a>
+  </div>
+
+</footer>
+
+
+  </div>
+
+  <div class="back-top-btn" id="back-top-btn"><i class="fa fa-chevron-up"></i></div>
+
+
+
+
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xxxxxxxxxx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+
+
+
+
+<script type="text/javascript" src="/js/motto.min.js?v=0.0.2"></script>
+<script type="text/javascript" src="/js/main.js?v=0.0.2"></script>
+
+
+</body>
+</html>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-27T05:24:38.173Z</updated>
+  <updated>2019-05-27T09:08:28.719Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>疑难杂症</title>
+    <link href="http://yoursite.com/2019/05/27/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    <id>http://yoursite.com/2019/05/27/疑难杂症/</id>
+    <published>2019-05-27T09:07:05.000Z</published>
+    <updated>2019-05-27T09:08:28.719Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-0写在前面"><a href="#1-0写在前面" class="headerlink" title="1.0写在前面"></a>1.0写在前面</h2><p>经过一段时间的工作和学习，也遇到了很多问题，多方查证也找到了答案，这篇文章将持续记录遇到的问题及解决办法。</p><h2 id="1-1-数组对象的深拷贝与浅拷贝"><a href="#1-1-数组对象的深拷贝与浅拷贝" class="headerlink" title="1.1 数组对象的深拷贝与浅拷贝"></a>1.1 数组对象的深拷贝与浅拷贝</h2><p>在做项目的时候难免遇到数组对象循环的情况，在一次项目代码编写中，需要用到接口请求到的数组对象，其中一个小需求中要将这组数据重新处理，将原有数据加工成为自己需要的数据。<br>但是在使用for循环改变对象键值后，发现循环不仅改变处理后的数组，还改变了原数组。<br>后来了解到数组循环有多种循环方式，如map、mapEach等方法都各有其特性。了解到使用map循环不会改变原数组，于是便改用了map。使用后本以为能顺利解决这个问题，但是却还是改变了原数组。<br>经过多方查证，我发现了问题所在，原来数组对象的循环与数组的循环大有不同。<br>js对象是引用类型，字符和数字是基本类型，基本类型传值是复制，引用类型传值是引用。栗子如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">var b = a;</span><br><span class="line">b++;</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = [1];</span><br><span class="line">var b = a;</span><br><span class="line">b[0]++;</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure><p>知道问题原因所在后，我了解到数组对象不能单单 let a = b;当为数组对象时，最好最数组对象进行一次深拷贝，这样不仅能将数组完全复制过来，还能保证原数组不被更改。<br>深拷贝可以将数组对象先转换为字符串，再将字符串转换为数组对象，具体操作如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let list = JSON.parse(JSON.stringify(res.data));</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function deepCopy(obj)&#123;</span><br><span class="line">    //判断是否是简单数据类型，</span><br><span class="line">    if(typeof obj == &quot;object&quot;)&#123;</span><br><span class="line">        //复杂数据类型</span><br><span class="line">        var result = obj.constructor == Array ? [] : &#123;&#125;;</span><br><span class="line">        for(let i in obj)&#123;</span><br><span class="line">            result[i] = typeof obj[i] == &quot;object&quot; ? deepCopy(obj[i]) : obj[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        //简单数据类型 直接 == 赋值</span><br><span class="line">        var result = obj;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let path = arr.map((e, i) =&gt; i % 2 ? null : [arr[i], arr[i + 1]]).filter(Boolean); // 两两取出</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-0写在前面&quot;&gt;&lt;a href=&quot;#1-0写在前面&quot; class=&quot;headerlink&quot; title=&quot;1.0写在前面&quot;&gt;&lt;/a&gt;1.0写在前面&lt;/h2&gt;&lt;p&gt;经过一段时间的工作和学习，也遇到了很多问题，多方查证也找到了答案，这篇文章将持续记录遇到的问题及解决
+      
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>源力彤项目思路整理</title>
