@@ -1,16 +1,647 @@
-extends partial/layout
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- content-Type -->
+<meta charset="utf-8">
 
-block site_title
-    !=  "归档 · " + config.title
 
-block description
-    - var desc = '归档页面 - ' + config.title;
-    meta(name="description", content=desc)
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="language" content="en">
+<meta name="robots" content="all">
 
-block content
-    .autopagerize_page_element: .content
-      .archive.animated.fadeInDown
-        ul.list-with-title
-          include mixins
-          +postList()
-          +make_pager(__('prev'), __('next'))
+
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+<meta name="author" content="jewel, 562285410@qq.com">
+<meta name="reply-to" content="562285410@qq.com">
+<meta name="owner" content="jewel">
+
+
+
+
+<meta name="google-site-verification" content="xxxxxxxxxx" />
+
+
+
+
+<meta name="baidu-site-verification" content="xxxxxxxxxx" />
+
+
+
+
+
+
+
+<meta name="keywords" content="^_^" />
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="just a blog">
+<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:site_name" content="just a blog">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="just a blog">
+
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.0.2" />
+
+
+
+
+<link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+
+<link href="http://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.0.2"/>
+
+
+<script>
+(function(){
+  var bp = document.createElement('script');
+  bp.src = '//push.zhanzhang.baidu.com/push.js';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <title> just a blog </title>
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'xxxxxxxxxx', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?xxxxxxxxxx";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+</head>
+<body lang="">
+
+  <!--[if lte IE 9]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+  <div class="another-theme layout">
+
+    
+<header class="header" id="header">
+
+  <div class="header-cont">
+    <div class="text-area">
+      
+        <h1 class="title" data-text="just a blog">just a blog</h1>
+        <h3 class="description" data-text=""></h3>
+      
+    </div>
+    <!-- Navigation -->
+    
+    <nav class="navigation clearfix" id="navigation">
+      
+        
+        <a class="nav-link" href="/" rel="section">
+          Home
+        </a>
+      
+        
+        <a class="nav-link" href="/categories" rel="section">
+          Categories
+        </a>
+      
+        
+        <a class="nav-link" href="/tags" rel="section">
+          Tags
+        </a>
+      
+        
+        <a class="nav-link" href="/about" rel="section">
+          About
+        </a>
+      
+    </nav>
+    
+  </div>
+  <div class="mask"></div>
+</header>
+
+
+    <main class="container">
+
+      
+
+<div class="index-content">
+
+  <div class="posts-list">
+    <div>
+      
+        
+
+
+<div class="post-item without-bgimage">
+
+
+  <div class="title-wrap" style="background: url() center / cover">
+    <h2 class="title"><a href="/2019/08/29/JavaScript构造函数用法/">JavaScript构造函数用法</a></h2>
+  </div>
+
+  <div class="post-cont">
+    <span class="post-time">
+      Posted on
+      <time datetime="2019-08-29T15:43:39+08:00" content="2019-08-29">
+        2019-08-29
+      </time>
+    </span>
+    <div class="text">
+      <a href="/2019/08/29/JavaScript构造函数用法/">
+        
+        构造函数123451.什么是构造函数2.为什么要使用构造函数3.构造函数的执行过程4.构造函数的返回值`
+1、什么是构造函数
+构造函数是js原型链基础，在 JavaScript 中，用 new 关键字来调用的函数，称为构造函数。
+2、为什么要使用构造函数
+在我们写代码时，简化工作量是我们所追求的。如你需要
+
+        
+      </a>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+
+    
+      <span class="post-category" >
+        &nbsp; In
+        
+          <span itemprop="about" itemscope>
+            <a href="/categories#学习笔记" itemprop="url" rel="index">
+              <span itemprop="name">学习笔记</span>
+            </a>
+          </span>
+
+          
+          
+
+        
+      </span>
+    
+
+    <a class="read-more-btn" target="_blank" href="/2019/08/29/JavaScript构造函数用法/" itemprop="url">
+      more...
+    </a>
+  </div>
+</div>
+
+      
+        
+
+
+<div class="post-item without-bgimage">
+
+
+  <div class="title-wrap" style="background: url() center / cover">
+    <h2 class="title"><a href="/2019/08/29/test/"></a></h2>
+  </div>
+
+  <div class="post-cont">
+    <span class="post-time">
+      Posted on
+      <time datetime="2019-08-29T15:10:29+08:00" content="2019-08-29">
+        2019-08-29
+      </time>
+    </span>
+    <div class="text">
+      <a href="/2019/08/29/test/">
+        
+        function fn(a, b){
+    return a + b;
+}
+//arrow function
+const foo = (a, b)=> {
+    return a + b
+};
+        
+      </a>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+
+    
+
+    <a class="read-more-btn" target="_blank" href="/2019/08/29/test/" itemprop="url">
+      more...
+    </a>
+  </div>
+</div>
+
+      
+        
+
+
+<div class="post-item without-bgimage">
+
+
+  <div class="title-wrap" style="background: url() center / cover">
+    <h2 class="title"><a href="/2019/05/27/疑难杂症/">疑难杂症</a></h2>
+  </div>
+
+  <div class="post-cont">
+    <span class="post-time">
+      Posted on
+      <time datetime="2019-05-27T17:07:05+08:00" content="2019-05-27">
+        2019-05-27
+      </time>
+    </span>
+    <div class="text">
+      <a href="/2019/05/27/疑难杂症/">
+        
+        1.0写在前面经过一段时间的工作和学习，也遇到了很多问题，多方查证也找到了答案，这篇文章将持续记录遇到的问题及解决办法。
+1.1 数组对象的深拷贝与浅拷贝在做项目的时候难免遇到数组对象循环的情况，在一次项目代码编写中，需要用到接口请求到的数组对象，其中一个小需求中要将这组数据重新处理，将原有数据加工成为自己需要的数据。但是在使用for循环改变对象键值后，发现循环不仅改变处理后的数组，还改变了原数组
+        ...
+      </a>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+
+    
+      <span class="post-category" >
+        &nbsp; In
+        
+          <span itemprop="about" itemscope>
+            <a href="/categories#学习笔记" itemprop="url" rel="index">
+              <span itemprop="name">学习笔记</span>
+            </a>
+          </span>
+
+          
+          
+
+        
+      </span>
+    
+
+    <a class="read-more-btn" target="_blank" href="/2019/05/27/疑难杂症/" itemprop="url">
+      more...
+    </a>
+  </div>
+</div>
+
+      
+        
+
+
+<div class="post-item without-bgimage">
+
+
+  <div class="title-wrap" style="background: url() center / cover">
+    <h2 class="title"><a href="/2018/09/04/源力彤项目思路整理/">源力彤项目思路整理</a></h2>
+  </div>
+
+  <div class="post-cont">
+    <span class="post-time">
+      Posted on
+      <time datetime="2018-09-04T16:15:10+08:00" content="2018-09-04">
+        2018-09-04
+      </time>
+    </span>
+    <div class="text">
+      <a href="/2018/09/04/源力彤项目思路整理/">
+        
+        项目前提本项目主要是界面ui更换，涉及技术主要是react16 + webpack4 + antd3。
+项目具体内容主要页面12登录页面主页
+涉及技术12antd组件:input、button、icon、footer、layout、message等react：Axios、router、localstorge等
+登录页（login）此页面主要是表单，主要涉及的逻辑是将输入的数据提交到接口验证，通过后
+        ...
+      </a>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+
+    
+      <span class="post-category" >
+        &nbsp; In
+        
+          <span itemprop="about" itemscope>
+            <a href="/categories#工作笔记" itemprop="url" rel="index">
+              <span itemprop="name">工作笔记</span>
+            </a>
+          </span>
+
+          
+          
+
+        
+      </span>
+    
+
+    <a class="read-more-btn" target="_blank" href="/2018/09/04/源力彤项目思路整理/" itemprop="url">
+      more...
+    </a>
+  </div>
+</div>
+
+      
+        
+
+
+<div class="post-item without-bgimage">
+
+
+  <div class="title-wrap" style="background: url() center / cover">
+    <h2 class="title"><a href="/2018/07/19/css-html学习心得/">css+html学习心得</a></h2>
+  </div>
+
+  <div class="post-cont">
+    <span class="post-time">
+      Posted on
+      <time datetime="2018-07-19T09:51:29+08:00" content="2018-07-19">
+        2018-07-19
+      </time>
+    </span>
+    <div class="text">
+      <a href="/2018/07/19/css-html学习心得/">
+        
+        #12345当初只是觉得这门语言挺有趣的，css拼拼凑凑就可以出来一个很漂亮的页面，感觉很简单，所有的一切都是靠自己的理解，总觉得自己都会了，可是最近进行规范开发才发现自己对于html和css的理解远远不够，比如之前使用css的时候都是靠自己的理解去写，并没有管过什么格式问题，所有的代码都是哪里需要改就直接找个空位填写下去，但是在这段时间对css的理解，发现所有的语言都有其特定规则，其特定的代码规
+        ...
+      </a>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+
+    
+      <span class="post-category" >
+        &nbsp; In
+        
+          <span itemprop="about" itemscope>
+            <a href="/categories#学习笔记" itemprop="url" rel="index">
+              <span itemprop="name">学习笔记</span>
+            </a>
+          </span>
+
+          
+          
+
+        
+      </span>
+    
+
+    <a class="read-more-btn" target="_blank" href="/2018/07/19/css-html学习心得/" itemprop="url">
+      more...
+    </a>
+  </div>
+</div>
+
+      
+        
+
+
+<div class="post-item without-bgimage">
+
+
+  <div class="title-wrap" style="background: url() center / cover">
+    <h2 class="title"><a href="/2018/07/18/JavaScript知识点/">JavaScript知识点</a></h2>
+  </div>
+
+  <div class="post-cont">
+    <span class="post-time">
+      Posted on
+      <time datetime="2018-07-18T10:49:36+08:00" content="2018-07-18">
+        2018-07-18
+      </time>
+    </span>
+    <div class="text">
+      <a href="/2018/07/18/JavaScript知识点/">
+        
+        JavaScript导论JavaScript 是一种轻量级的脚本语言。所谓“脚本语言”（script language），指的是它不具备开发操作系统的能力，而是只用来编写控制其他大型应用程序（比如浏览器）的“脚本”。vue中所使用的typescript被称作JavaScript的超集。
+JavaScript运算123赋值表达式 "=":使用此表达式会给变量赋值（不可对变量进行判断)相等运算“==”
+        ...
+      </a>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+
+    
+      <span class="post-category" >
+        &nbsp; In
+        
+          <span itemprop="about" itemscope>
+            <a href="/categories#学习笔记" itemprop="url" rel="index">
+              <span itemprop="name">学习笔记</span>
+            </a>
+          </span>
+
+          
+          
+
+        
+      </span>
+    
+
+    <a class="read-more-btn" target="_blank" href="/2018/07/18/JavaScript知识点/" itemprop="url">
+      more...
+    </a>
+  </div>
+</div>
+
+      
+        
+
+
+<div class="post-item without-bgimage">
+
+
+  <div class="title-wrap" style="background: url() center / cover">
+    <h2 class="title"><a href="/2018/07/18/JavaScript学习心得/">JavaScript学习心得</a></h2>
+  </div>
+
+  <div class="post-cont">
+    <span class="post-time">
+      Posted on
+      <time datetime="2018-07-18T09:07:20+08:00" content="2018-07-18">
+        2018-07-18
+      </time>
+    </span>
+    <div class="text">
+      <a href="/2018/07/18/JavaScript学习心得/">
+        
+        
+        
+      </a>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+
+    
+      <span class="post-category" >
+        &nbsp; In
+        
+          <span itemprop="about" itemscope>
+            <a href="/categories#学习笔记" itemprop="url" rel="index">
+              <span itemprop="name">学习笔记</span>
+            </a>
+          </span>
+
+          
+          
+
+        
+      </span>
+    
+
+    <a class="read-more-btn" target="_blank" href="/2018/07/18/JavaScript学习心得/" itemprop="url">
+      more...
+    </a>
+  </div>
+</div>
+
+      
+    </div>
+    
+
+  </div>
+
+  <div class="right-info">
+  <div class="featured-tags">
+    <h5>FEATURED TAGS</h5>
+    <div class="tags">
+    
+    </div>
+  </div>
+  <div class="about-me">
+    <h5>ABOUT ME</h5>
+    <img src="/images/qtc_avatar.png" alt="jewel" itemprop="image" />
+    <p class="description motion-element" itemprop="description"></p>
+
+    <div class="links-of-author clearfix">
+      
+        
+          <span class="links-of-author-item">
+            <a href="https://github.com/jeweljiang" target="_blank" class="github">
+              <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+            </a>
+          </span>
+        
+          <span class="links-of-author-item">
+            <a href="111" target="_blank" class="twitter">
+              <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+            </a>
+          </span>
+        
+          <span class="links-of-author-item">
+            <a href="11" target="_blank" class="zhihu">
+              <i class="fa fa-zhihu fa-stack-1x fa-inverse"></i>
+            </a>
+          </span>
+        
+          <span class="links-of-author-item">
+            <a href="http://weibo.com/" target="_blank" class="weibo">
+              <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+            </a>
+          </span>
+        
+      
+    </div>
+  </div>
+  
+</div>
+
+
+</div>
+
+
+
+      
+
+
+
+    </main>
+
+    <footer class="footer clearfix">
+  <div class="copyright" >
+    <span>Copyright</span>
+    
+    &copy;  2018-
+    <span itemprop="copyrightYear">2020</span>
+    <span class="author" itemprop="copyrightHolder">jewel</span>
+  </div>
+
+  <div class="info">
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+      <span id="showDays" class="show-days"></span>
+      <script>
+      var birthDay = new Date('07/18/2018');
+      var now = new Date();
+      var duration = now.getTime() - birthDay.getTime();
+      var total= Math.floor(duration / (1000 * 60 * 60 * 24));
+      document.getElementById("showDays").innerHTML = "本站已运行 "+total+" 天";
+      </script>
+      ---
+    
+    <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+  </div>
+
+  <div class="my-theme">
+    Theme by jewel</a>
+  </div>
+
+</footer>
+
+
+  </div>
+
+  <div class="back-top-btn" id="back-top-btn"><i class="fa fa-chevron-up"></i></div>
+
+
+
+
+<script type="text/javascript" src="/js/motto.min.js?v=0.0.2"></script>
+<script type="text/javascript" src="/js/main.js?v=0.0.2"></script>
+
+
+</body>
+</html>

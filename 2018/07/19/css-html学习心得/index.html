@@ -1,34 +1,391 @@
-extends partial/layout
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- content-Type -->
+<meta charset="utf-8">
 
-include mixins
 
-block site_title
-    != page.title + " · " + config.title
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="language" content="en">
+<meta name="robots" content="all">
 
-block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
 
-block content
-  .autopagerize_page_element: .content: .post-page
-    include mixins
-    +make_post(page, true)
-    .share
-      .evernote
-        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
-      .weibo
-        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
-      .twitter
-        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
-    - var prev = page.prev ? page.prev.path : false;
-    - var next = page.next ? page.next.path : false;
-    .pagination
-      ul.clearfix
-        if prev
-          li.pre.pagbuttons
-            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
-        if next
-          li.next.pagbuttons
-            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
-    if page.comments
-        include partial/comments
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+<meta name="author" content="jewel, 562285410@qq.com">
+<meta name="reply-to" content="562285410@qq.com">
+<meta name="owner" content="jewel">
+
+
+
+
+<meta name="google-site-verification" content="xxxxxxxxxx" />
+
+
+
+
+<meta name="baidu-site-verification" content="xxxxxxxxxx" />
+
+
+
+
+
+
+
+<meta name="keywords" content="^_^" />
+
+
+<meta name="description" content="#12345当初只是觉得这门语言挺有趣的，css拼拼凑凑就可以出来一个很漂亮的页面，感觉很简单，所有的一切都是靠自己的理解，总觉得自己都会了，可是最近进行规范开发才发现自己对于html和css的理解远远不够，比如之前使用css的时候都是靠自己的理解去写，并没有管过什么格式问题，所有的代码都是哪里需要改就直接找个空位填写下去，但是在这段时间对css的理解，发现所有的语言都有其特定规则，其特定的代码规">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css+html学习心得">
+<meta property="og:url" content="http://yoursite.com/2018/07/19/css-html学习心得/index.html">
+<meta property="og:site_name" content="just a blog">
+<meta property="og:description" content="#12345当初只是觉得这门语言挺有趣的，css拼拼凑凑就可以出来一个很漂亮的页面，感觉很简单，所有的一切都是靠自己的理解，总觉得自己都会了，可是最近进行规范开发才发现自己对于html和css的理解远远不够，比如之前使用css的时候都是靠自己的理解去写，并没有管过什么格式问题，所有的代码都是哪里需要改就直接找个空位填写下去，但是在这段时间对css的理解，发现所有的语言都有其特定规则，其特定的代码规">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-27T05:24:38.188Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css+html学习心得">
+<meta name="twitter:description" content="#12345当初只是觉得这门语言挺有趣的，css拼拼凑凑就可以出来一个很漂亮的页面，感觉很简单，所有的一切都是靠自己的理解，总觉得自己都会了，可是最近进行规范开发才发现自己对于html和css的理解远远不够，比如之前使用css的时候都是靠自己的理解去写，并没有管过什么格式问题，所有的代码都是哪里需要改就直接找个空位填写下去，但是在这段时间对css的理解，发现所有的语言都有其特定规则，其特定的代码规">
+
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.0.2" />
+
+
+
+
+<link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+
+<link href="http://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.0.2"/>
+
+
+<script>
+(function(){
+  var bp = document.createElement('script');
+  bp.src = '//push.zhanzhang.baidu.com/push.js';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <title> css+html学习心得 </title>
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'xxxxxxxxxx', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?xxxxxxxxxx";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+</head>
+<body lang="">
+
+  <!--[if lte IE 9]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+  <div class="another-theme layout">
+
+    
+<header class="header" id="header">
+
+  <div class="header-cont">
+    <div class="text-area">
+      
+        <h1 class="title" data-text="css+html学习心得"> css+html学习心得 </h1>
+
+        
+        <div class="post-meta">
+          <div class="post-time">
+            Posted on
+            <time  datetime="2018-07-19T09:51:29+08:00" content="2018-07-19">
+              2018-07-19
+            </time>
+          </div>
+
+          
+            <div class="post-category" >
+              
+                <span>
+                  <a href="/categories#学习笔记" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </div>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <a href="/2018/07/19/css-html学习心得/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/07/19/css-html学习心得/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+        </div>
+        
+      
+    </div>
+    <!-- Navigation -->
+    
+    <nav class="navigation clearfix" id="navigation">
+      
+        
+        <a class="nav-link" href="/" rel="section">
+          Home
+        </a>
+      
+        
+        <a class="nav-link" href="/categories" rel="section">
+          Categories
+        </a>
+      
+        
+        <a class="nav-link" href="/tags" rel="section">
+          Tags
+        </a>
+      
+        
+        <a class="nav-link" href="/about" rel="section">
+          About
+        </a>
+      
+    </nav>
+    
+  </div>
+  <div class="mask"></div>
+</header>
+
+
+    <main class="container">
+
+      
+
+  <article class="post-article post-type-normal post" itemscope>
+
+  <div class="post-body">
+
+    <div class="content markdown-body"><p>#<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">当初只是觉得这门语言挺有趣的，css拼拼凑凑就可以出来一个很漂亮的页面，感觉很简单，所有的一切都是靠自己的理解，总觉得自己都会了，可是最近进行规范</span><br><span class="line">开发才发现自己对于html和css的理解远远不够，比如之前使用css的时候都是靠自己的理解去写，</span><br><span class="line">并没有管过什么格式问题，所有的代码都是哪里需要改就直接找个空位填写下去，但是在这段时间</span><br><span class="line">对css的理解，发现所有的语言都有其特定规则，其特定的代码规范。</span><br><span class="line">又觉得自己什么都不会了，感觉自己现阶段需要将那些只是都补回来，css、html、JavaScript统统都需要重新学习，所以要加油了。</span><br></pre></td></tr></table></figure></p>
+<p># </p>
+<h3 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h3><h3 id="css书写顺序"><a href="#css书写顺序" class="headerlink" title="css书写顺序"></a>css书写顺序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.位置属性(position, top, right, z-index,display, float等)</span><br><span class="line"></span><br><span class="line">　　2.大小(width, height, padding, margin)</span><br><span class="line"></span><br><span class="line">　　3.文字系列(font, line-height, letter-spacing,color- text-align等)</span><br><span class="line"></span><br><span class="line">　　4.背景(background, border等)</span><br><span class="line"></span><br><span class="line">　　5.其他(animation, transition等)</span><br></pre></td></tr></table></figure>
+<h3 id="书写规范使用CSS缩写属性"><a href="#书写规范使用CSS缩写属性" class="headerlink" title="书写规范使用CSS缩写属性"></a>书写规范使用CSS缩写属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line">　CSS有些属性是可以缩写的，比如padding,margin,font等等，这样精简代码同时又能提高用户的阅读体验。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">　　去掉小数点前的“0”</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">　　简写命名</span><br><span class="line"></span><br><span class="line">　　很多用户都喜欢简写类名，但前提是要让人看懂你的命名才能简写哦!</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">　　16进制颜色代码缩写</span><br><span class="line"></span><br><span class="line">　　有些颜色代码是可以缩写的，我们就尽量缩写吧，提高用户体验为主。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">　　连字符CSS选择器命名规范</span><br><span class="line"></span><br><span class="line">　　1.长名称或词组可以使用中横线来为选择器命名。</span><br><span class="line"></span><br><span class="line">　　2.不建议使用“_”下划线来命名CSS选择器，为什么呢?</span><br><span class="line"></span><br><span class="line">　　输入的时候少按一个shift键;</span><br><span class="line"></span><br><span class="line">　　浏览器兼容问题 (比如使用_tips的选择器命名，在IE6是无效的)</span><br><span class="line"></span><br><span class="line">　　能良好区分JavaScript变量命名(JS变量命名是用“_”)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">　　不要随意使用Id</span><br><span class="line"></span><br><span class="line">　　id在JS是唯一的，不能多次使用，而使用class类选择器却可以重复使用，另外id的优先级优先与class，所以id应该按需使用，而不能滥用。　</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">　　为选择器添加状态前缀</span><br><span class="line"></span><br><span class="line">　　有时候可以给选择器添加一个表示状态的前缀，让语义更明了，比如下图是添加了“.is-”前缀。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">　　CSS命名规范(规则)常用的CSS命名规则</span><br><span class="line"></span><br><span class="line">　　头：header</span><br><span class="line"></span><br><span class="line">　　内容：content/container</span><br><span class="line"></span><br><span class="line">　　尾：footer</span><br><span class="line"></span><br><span class="line">　　导航：nav</span><br><span class="line"></span><br><span class="line">　　侧栏：sidebar</span><br><span class="line"></span><br><span class="line">　　栏目：column</span><br><span class="line"></span><br><span class="line">　　页面外围控制整体佈局宽度：wrapper</span><br><span class="line"></span><br><span class="line">　　左右中：left right center</span><br><span class="line"></span><br><span class="line">　　登录条：loginbar</span><br><span class="line"></span><br><span class="line">　　标志：logo</span><br><span class="line"></span><br><span class="line">　　广告：banner</span><br><span class="line"></span><br><span class="line">　　页面主体：main</span><br><span class="line"></span><br><span class="line">　　热点：hot</span><br><span class="line"></span><br><span class="line">　　新闻：news</span><br><span class="line"></span><br><span class="line">　　下载：download</span><br><span class="line"></span><br><span class="line">　　子导航：subnav</span><br><span class="line"></span><br><span class="line">　　菜单：menu</span><br><span class="line"></span><br><span class="line">　　子菜单：submenu</span><br><span class="line"></span><br><span class="line">　　搜索：search</span><br><span class="line"></span><br><span class="line">　　友情链接：friendlink</span><br><span class="line"></span><br><span class="line">　　页脚：footer</span><br><span class="line"></span><br><span class="line">　　版权：copyright</span><br><span class="line"></span><br><span class="line">　　滚动：scroll</span><br><span class="line"></span><br><span class="line">　　内容：content</span><br><span class="line"></span><br><span class="line">　　标签：tags</span><br><span class="line"></span><br><span class="line">　　文章列表：list</span><br><span class="line"></span><br><span class="line">　　提示信息：msg</span><br><span class="line"></span><br><span class="line">　　小技巧：tips</span><br><span class="line"></span><br><span class="line">　　栏目标题：title</span><br><span class="line"></span><br><span class="line">　　加入：joinus</span><br><span class="line"></span><br><span class="line">　　指南：guide</span><br><span class="line"></span><br><span class="line">　　服务：service</span><br><span class="line"></span><br><span class="line">　　注册：regsiter</span><br><span class="line"></span><br><span class="line">　　状态：status</span><br><span class="line"></span><br><span class="line">　　投票：vote</span><br><span class="line"></span><br><span class="line">　　合作伙伴：partner</span><br></pre></td></tr></table></figure>
+<h3 id="注释的写法"><a href="#注释的写法" class="headerlink" title="注释的写法:"></a>注释的写法:</h3><pre><code>　　/* Header */
+
+　　内容区
+
+　　/* End Header */
+</code></pre><p>Id的命名:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">　　容器: container</span><br><span class="line"></span><br><span class="line">　　页头：header</span><br><span class="line"></span><br><span class="line">　　内容：content/container</span><br><span class="line"></span><br><span class="line">　　页面主体：main</span><br><span class="line"></span><br><span class="line">　　页尾：footer</span><br><span class="line"></span><br><span class="line">　　导航：nav</span><br><span class="line"></span><br><span class="line">　　侧栏：sidebar</span><br><span class="line"></span><br><span class="line">　　栏目：column</span><br><span class="line"></span><br><span class="line">　　页面外围控制整体佈局宽度：wrapper</span><br><span class="line"></span><br><span class="line">　　左右中：left right center</span><br></pre></td></tr></table></figure>
+<p>(2)导航</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">　　主导航：mainnav</span><br><span class="line"></span><br><span class="line">　　子导航：subnav</span><br><span class="line"></span><br><span class="line">　　顶导航：topnav</span><br><span class="line"></span><br><span class="line">　　边导航：sidebar</span><br><span class="line"></span><br><span class="line">　　左导航：leftsidebar</span><br><span class="line"></span><br><span class="line">　　右导航：rightsidebar</span><br><span class="line"></span><br><span class="line">　　菜单：menu</span><br><span class="line"></span><br><span class="line">　　子菜单：submenu</span><br><span class="line"></span><br><span class="line">　　标题: title</span><br><span class="line"></span><br><span class="line">　　摘要: summary</span><br></pre></td></tr></table></figure>
+<p>(3)功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">　　广告：banner</span><br><span class="line"></span><br><span class="line">　　登陆：login</span><br><span class="line"></span><br><span class="line">　　登录条：loginbar</span><br><span class="line"></span><br><span class="line">　　注册：register</span><br><span class="line"></span><br><span class="line">　　搜索：search</span><br><span class="line"></span><br><span class="line">　　功能区：shop</span><br><span class="line"></span><br><span class="line">　　标题：title</span><br><span class="line"></span><br><span class="line">　　加入：joinus</span><br><span class="line"></span><br><span class="line">　　状态：status</span><br><span class="line"></span><br><span class="line">　　按钮：btn</span><br><span class="line"></span><br><span class="line">　　滚动：scroll</span><br><span class="line"></span><br><span class="line">　　标籤页：tab</span><br><span class="line"></span><br><span class="line">　　文章列表：list</span><br><span class="line"></span><br><span class="line">　　提示信息：msg</span><br><span class="line"></span><br><span class="line">　　当前的: current</span><br><span class="line"></span><br><span class="line">　　小技巧：tips</span><br><span class="line"></span><br><span class="line">　　图标: icon</span><br><span class="line"></span><br><span class="line">　　注释：note</span><br><span class="line"></span><br><span class="line">　　指南：guild</span><br><span class="line"></span><br><span class="line">　　服务：service</span><br><span class="line"></span><br><span class="line">　　热点：hot</span><br><span class="line"></span><br><span class="line">　　新闻：news</span><br><span class="line"></span><br><span class="line">　　下载：download</span><br><span class="line"></span><br><span class="line">　　投票：vote</span><br><span class="line"></span><br><span class="line">　　合作伙伴：partner</span><br><span class="line"></span><br><span class="line">　　友情链接：link</span><br><span class="line"></span><br><span class="line">　　版权：copyright</span><br></pre></td></tr></table></figure>
+<p>注意事项::</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">　　2.尽量用英文;</span><br><span class="line"></span><br><span class="line">　　3.不加中槓和下划线;</span><br><span class="line"></span><br><span class="line">　　4.尽量不缩写，除非一看就明白的单词。</span><br></pre></td></tr></table></figure>
+<p>CSS样式表文件命名</p>
+<figure class="highlight plain"><figcaption><span>master.css</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">　　模块 module.css</span><br><span class="line"></span><br><span class="line">　　基本共用 base.css</span><br><span class="line"></span><br><span class="line">　　布局、版面 layout.css</span><br><span class="line"></span><br><span class="line">　　主题 themes.css</span><br><span class="line"></span><br><span class="line">　　专栏 columns.css</span><br><span class="line"></span><br><span class="line">　　文字 font.css</span><br><span class="line"></span><br><span class="line">　　表单 forms.css</span><br><span class="line"></span><br><span class="line">　　补丁 mend.css</span><br><span class="line"></span><br><span class="line">　　打印 print.css</span><br></pre></td></tr></table></figure>
+</div>
+
+    <div class="post-sidebar">
+  <div class="toggle-btn" id="toggle-btn">
+    <i class="fa fa-reorder"></i>
+  </div>
+  <section class="post-toc-wrap" id="post-sidebar">
+    <h2 class="toc-title">内容目录</h2>
+    <div class="post-toc">
+      
+      
+        <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码规范"><span class="nav-text">代码规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css书写顺序"><span class="nav-text">css书写顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#书写规范使用CSS缩写属性"><span class="nav-text">书写规范使用CSS缩写属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释的写法"><span class="nav-text">注释的写法:</span></a></li></ol></div>
+      
+    </div>
+  </section>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    
+    
+  <style>
+    .donation {
+      width: 100%;
+      margin-top: 2rem;
+    }
+    .donation .text {
+      color: #333;
+      font-size: .8rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .donation .text:hover {
+      color: rgb(63,134,181);
+    }
+    .donation .img-box {
+      transition: all .3s;
+      width: 0;
+      height: 0;
+      margin: 1rem auto;
+      overflow: hidden;
+    }
+    .donation .img-box img {
+      width: 100%;
+      height: 100%;
+    }
+    .donation #donation {
+      display: none;
+    }
+    .donation #donation:checked + .img-box {
+      width: 16rem;
+      height: 16rem;
+    }
+  </style>
+  <div class="donation">
+    <label class="text" for="donation">
+
+    </label>
+    <input type="checkbox" name="donation" id="donation">
+    <div class="img-box">
+      <img src="/img/donation.png" alt="donation" />
+    </div>
+  </div>
+
+
+  </footer>
+
+</article>
+
+
+
+
+      
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/07/19/css-html学习心得/"
+           data-title="css+html学习心得" data-url="http://yoursite.com/2018/07/19/css-html学习心得/">
+      </div>
+    
+  </div>
+
+
+
+
+    </main>
+
+    <footer class="footer clearfix">
+  <div class="copyright" >
+    <span>Copyright</span>
+    
+    &copy;  2018-
+    <span itemprop="copyrightYear">2020</span>
+    <span class="author" itemprop="copyrightHolder">jewel</span>
+  </div>
+
+  <div class="info">
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+      <span id="showDays" class="show-days"></span>
+      <script>
+      var birthDay = new Date('07/18/2018');
+      var now = new Date();
+      var duration = now.getTime() - birthDay.getTime();
+      var total= Math.floor(duration / (1000 * 60 * 60 * 24));
+      document.getElementById("showDays").innerHTML = "本站已运行 "+total+" 天";
+      </script>
+      ---
+    
+    <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+  </div>
+
+  <div class="my-theme">
+    Theme by jewel</a>
+  </div>
+
+</footer>
+
+
+  </div>
+
+  <div class="back-top-btn" id="back-top-btn"><i class="fa fa-chevron-up"></i></div>
+
+
+
+
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xxxxxxxxxx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+
+
+
+
+<script type="text/javascript" src="/js/motto.min.js?v=0.0.2"></script>
+<script type="text/javascript" src="/js/main.js?v=0.0.2"></script>
+
+
+</body>
+</html>
