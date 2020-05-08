@@ -1,6 +1,6 @@
 .post pre,
 .post .highlight {
-  background: highlight-background;
+  background: #f7f7f7;
   margin: 20px 0;
   padding: 15px;
   overflow: auto;
@@ -96,7 +96,7 @@
   border-style: solid;
   border-color: $border-color;
   border-width: 1px 0;
-  background: highlight-background;
+  background: #f7f7f7;
   padding: 15px $content-desktop-padding 15px 15px;
 }
 .post .gist .gist-file {
@@ -122,7 +122,7 @@
   border: none;
 }
 .post .gist .gist-file .gist-meta {
-  background: highlight-background;
+  background: #f7f7f7;
   color: #8e908c;
   font: 13px $font-family-base;
   text-shadow: 0 0;
